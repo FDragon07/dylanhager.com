@@ -1,0 +1,57 @@
+/* Fonts/colors */
+
+background-color{color: #030105;}
+text-color{color: #ebe3f4;}
+primary-color{color: #ba97dd;}
+secondary-color{color: #4d2277;}
+accent-color{color: #9353d4;}
+
+.andika-regular {
+    font-family: "Andika", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.source-code-pro {
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+h1 {
+    font : ".source-code-pro";
+}
+
+body {
+    background-color: "background-color";
+    font : ".andika-regular";
+}
+
+/* Postions */
+.headercenter {
+    text-align: center;
+}
+
+ /* Nav */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: "background-color";
+}
+
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: "text-color";
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: "primary-color";
+}
