@@ -1,31 +1,27 @@
 /* Fonts/colors */
 
-background-color{color: #030105;}
-text-color{color: #ebe3f4;}
-primary-color{color: #ba97dd;}
-secondary-color{color: #4d2277;}
-accent-color{color: #9353d4;}
+:root {
+    --background-color: #030105;
+    --text-color: #ebe3f4;
+    --primary-color: #ba97dd;
+    --secondary-color: #4d2277;
+    --accent-color: #9353d4;
+}
 
-.andika-regular {
+body {
     font-family: "Andika", sans-serif;
     font-weight: 400;
     font-style: normal;
+    background: linear-gradient(180deg, var(--background-color) 0%, var(--secondary-color) 1000%);
+    color: var(--text-color);
 }
 
-.source-code-pro {
+h1 {
     font-family: "Source Code Pro", monospace;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-}
-
-h1 {
-    font : ".source-code-pro";
-}
-
-body {
-    background-color: "background-color";
-    font : ".andika-regular";
+    color: var(--primary-color);
 }
 
 /* Postions */
@@ -39,7 +35,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: "background-color";
+    background-color: var(--background-color);
 }
 
 li {
@@ -47,11 +43,11 @@ li {
 }
 li a {
     display: block;
-    color: "text-color";
+    color: var(--text-color);
     text-align: center;
     padding: 20px;
     text-decoration: none;
 }
 li a:hover {
-    background-color: "primary-color";
+    background-color: var(--secondary-color);
 }
