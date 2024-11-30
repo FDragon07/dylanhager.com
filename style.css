@@ -88,3 +88,17 @@ li a {
 li a:hover {
     background-color: var(--secondary-color);
 }
+
+/* Hero Image Background */
+.hero {
+  background-image: url("me.JPG");
+
+  /* Set a specific height */
+  height: 50%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
