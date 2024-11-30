@@ -8,16 +8,19 @@
             @import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:wght@500&display=swap');
         </style>
         <link rel="stylesheet" href="style.css">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                fetch('navbar.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar').innerHTML = data;
+                        document.body.classList.remove("hidden");
+                    });
+            });
+        </script>
     </head>
-    <body>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <body class="hidden">
+        <div id="navbar"></div>
         <header>
             <h1 class="headercenter">Hello, World!</h1>
         </header>

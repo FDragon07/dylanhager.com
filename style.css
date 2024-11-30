@@ -26,6 +26,11 @@ h1 {
     color: var(--primary-color);
 }
 
+/* Properties */
+.hidden {
+    visibility: hidden;
+}
+
 /* Postions */
 .headercenter {
     text-align: center;
