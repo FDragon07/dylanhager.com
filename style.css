@@ -10,7 +10,7 @@
 
 body {
     font-family: "Andika", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-style: normal;
     background: linear-gradient(180deg, var(--background-color) 0%, var(--secondary-color) 500%);
     min-height: 100vh;
@@ -18,7 +18,7 @@ body {
     color: var(--text-color);
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     font-family: "Source Code Pro", monospace;
     font-optical-sizing: auto;
     font-weight: 500;
@@ -26,9 +26,26 @@ h1 {
     color: var(--primary-color);
 }
 
+.button {
+    font-family: "Andika", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--text-color);
+    background-color: var(--accent-color);
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1em;
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+}
+
 /* Properties */
 .hidden {
-    visibility: hidden;
+    display: none;
 }
 
 /* Postions */
