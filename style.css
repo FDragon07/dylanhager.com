@@ -12,7 +12,9 @@ body {
     font-family: "Andika", sans-serif;
     font-weight: 400;
     font-style: normal;
-    background: linear-gradient(180deg, var(--background-color) 0%, var(--secondary-color) 1000%);
+    background: linear-gradient(180deg, var(--background-color) 0%, var(--secondary-color) 500%);
+    min-height: 100vh;
+    margin: 0;
     color: var(--text-color);
 }
 
