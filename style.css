@@ -97,18 +97,21 @@ li a:hover {
 
 /* Hero Image Background */
 .hero {
-  background-image: url("me.JPG");
+    background-image: url("me.JPG");
 
-  /* Set a specific height */
-  height: 50%;
+    /* Set a specific height */
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: -1;
 
-  /* Add the blur effect */
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
 
-  /* Position and center the image to scale nicely on all screens */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+  	/* Position and center the image to scale nicely on all screens */
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	position: absolute;
 }
