@@ -95,6 +95,36 @@ li a:hover {
     background-color: var(--secondary-color);
 }
 
+.navbar {
+    position: relative;
+    overflow: hidden; /* Ensure sparkles don't overflow the navbar */
+}
+
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle-animation 5s linear 1;
+}
+
+@keyframes sparkle-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
 /* Hero Image Background */
 .hero {
     background-image: url("me.JPG");

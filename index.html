@@ -14,6 +14,12 @@
                     .then(response => response.text())
                     .then(data => {
                         document.getElementById('navbar').innerHTML = data;
+                        // Load the sparkles script
+                        const script = document.createElement('script');
+                        script.src = 'sparkles.js';
+                        document.body.appendChild(script);
+
+                        // Stops glitching when page is loading
                         document.body.classList.remove("hidden");
                     });
             });
