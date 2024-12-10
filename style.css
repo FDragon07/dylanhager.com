@@ -159,10 +159,15 @@ li a:hover {
     z-index: 2;
     width: 70%;
     padding: 10px;
-    margin-top: 60px;
     text-align: center;
-  }
+}
 
+/* Makes text smaller on mobile */
+@media (max-width: 800px) {
+    .bg-text {
+        font-size: 0.8em;
+    }
+}
 
   /* Project styles */
 .projects-container {
