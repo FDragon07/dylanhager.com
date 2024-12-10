@@ -5,9 +5,9 @@ let animationTime = 5;
 function createSparkle() {
     const sparkle = document.createElement('div');
     sparkle.classList.add('sparkle');
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        navbar.appendChild(sparkle);
+    let bar = document.querySelector('.navbar');
+    if (bar) {
+        bar.appendChild(sparkle);
 
         // Set random position
         sparkle.style.top = Math.random() * 100 + '%';
@@ -21,6 +21,27 @@ function createSparkle() {
         // Remove sparkle after animation
         setTimeout(() => {
             sparkle.remove();
+        }, 1000 * animationTime);
+    }
+
+    const sparkle2 = document.createElement('div');
+    sparkle2.classList.add('sparkle');
+    bar = document.querySelector('.footer');
+    if (bar) {
+        bar.appendChild(sparkle2);
+
+        // Set random position
+        sparkle2.style.top = Math.random() * 100 + '%';
+        sparkle2.style.left = Math.random() * 100 + '%';
+
+        // Set random negative animation delay
+        if (initialSparkle === true) {
+            sparkle2.style.animationDelay = '-' + Math.random() * animationTime + 's';
+        }
+
+        // Remove sparkle after animation
+        setTimeout(() => {
+            sparkle2.remove();
         }, 1000 * animationTime);
     }
 }

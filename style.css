@@ -126,6 +126,21 @@ li a:hover {
     }
 }
 
+/* Footer */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: smaller;
+}
+
+.footer a:hover {
+    color: var(--primary-color);
+}
+
 /* Hero Image Background */
 .hero {
     background-image: url("me.JPG");
