@@ -187,10 +187,6 @@ li a:hover {
     box-sizing: border-box;
 }
 
-.project-section:hover {
-    transform: scale(1.05);
-}
-
 .project-section img {
     width: 100%;
     height: auto;
@@ -205,30 +201,8 @@ li a:hover {
     transition: all 0.3s ease;
 }
 
-.project-section .buttons {
-    display: none;
-}
-
-.project-section:hover img {
-    filter: blur(5px) brightness(0.5);
-}
-
-.project-section:hover .description {
-    color: transparent;
-    text-shadow: 0 0 5px var(--text-color); 
-    transition: color 0.3s ease;
-}
-
-.project-section:hover .buttons {
-    display: flex;
-    flex-direction: column; /* Arrange buttons in a column */
-    justify-content: center;
-    align-items: center; /* Center the buttons horizontally */
-    gap: 10px;
-    position: absolute;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+.project-section .buttons a:hover {
+    background-color: var(--secondary-color);
 }
 
 .project-section .buttons a {
@@ -241,8 +215,58 @@ li a:hover {
     margin: 10px 0; /* Add vertical margin to separate buttons */
 }
 
-.project-section .buttons a:hover {
-    background-color: var(--secondary-color);
+@media (min-width: 874px) {
+    .project-section:hover {
+        transform: scale(1.05);
+    }
+
+    .project-section .buttons {
+        display: none;
+    }
+    
+    .project-section:hover img {
+        filter: blur(5px) brightness(0.5);
+    }
+    
+    .project-section:hover .description {
+        color: transparent;
+        text-shadow: 0 0 5px var(--text-color); 
+        transition: color 0.3s ease;
+    }
+    
+    .project-section:hover .buttons {
+        display: flex;
+        flex-direction: column; /* Arrange buttons in a column */
+        justify-content: center;
+        align-items: center; /* Center the buttons horizontally */
+        gap: 10px;
+        position: absolute;
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Adjust for perfect centering */
+    }
+}
+
+@media (max-width: 873px) {
+    .project-section .buttons {
+        display: flex;
+        flex-direction: column; /* Arrange buttons in a column */
+        justify-content: center;
+        align-items: center; /* Center the buttons horizontally */
+        gap: 10px;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-top: 20px; /* Add margin to separate buttons from content */
+    }
+
+    .project-section:hover img,
+    .project-section:hover .description {
+        filter: none;
+        color: inherit;
+        text-shadow: none;
+    }
 }
 
 .projects-header {
