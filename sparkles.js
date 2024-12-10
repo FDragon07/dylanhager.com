@@ -31,7 +31,7 @@ function createSparkle() {
         bar.appendChild(sparkle2);
 
         // Set random position
-        sparkle2.style.top = Math.random() * 100 + '%';
+        sparkle2.style.bottom = Math.random() * 100 + '%';
         sparkle2.style.left = Math.random() * 100 + '%';
 
         // Set random negative animation delay

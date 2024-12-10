@@ -128,12 +128,13 @@ li a:hover {
 
 .footer {
     position: fixed;
-    left: 0;
     bottom: 0;
     width: 100%;
     background-color: var(--background-color);
     color: var(--text-color);
     font-size: smaller;
+    overflow: hidden;
+    z-index: 1000; /* Ensure the footer stays on top */
 }
 
 .footer a:hover {
