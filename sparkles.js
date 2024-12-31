@@ -25,14 +25,19 @@ function createSparkle() {
     }
 
     const sparkle2 = document.createElement('div');
+    sparkle2.style.position = 'absolute';
     sparkle2.classList.add('sparkle');
     bar = document.querySelector('.footer');
     if (bar) {
         bar.appendChild(sparkle2);
 
         // Set random position
-        sparkle2.style.bottom = Math.random() * 100 + '%';
-        sparkle2.style.left = Math.random() * 100 + '%';
+        let bottomNum = Math.random() * 47;
+        if (bottomNum < 2) {
+            sparkle2.style.bottom = 2;
+        }
+        sparkle2.style.bottom = bottomNum + 'px';
+        sparkle2.style.left = Math.random() * 98 + '%';
 
         // Set random negative animation delay
         if (initialSparkle === true) {

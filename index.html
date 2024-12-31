@@ -25,66 +25,77 @@
                     });
         
                 // Function to check and adjust footer position
-                function checkFooterPosition() {
-                    if (document.body.scrollHeight > window.innerHeight) {
-                        document.querySelector('.footer').style.position = 'relative';
-                    } else {
-                        document.querySelector('.footer').style.position = 'fixed';
-                    }
-                }
+                // function checkFooterPosition() {
+                //     if (document.body.scrollHeight > window.innerHeight) {
+                //         document.querySelector('.footer').style.position = 'relative';
+                //     } else {
+                //         document.querySelector('.footer').style.position = 'fixed';
+                //     }
+                // }
         
-                // Initial check
-                checkFooterPosition();
-                setInterval(checkFooterPosition, 0);
+                // // Initial check
+                // checkFooterPosition();
+                // setInterval(checkFooterPosition, 0);
             });
         </script>
     </head>
     <body class="hidden">
-        <div id="navbar"></div>
-        <div class="projects-header">
-            <h1>My Projects</h1>
-        </div>
-        <div class="projects-container">
-            <div class="project-section">
-                <img src="ProjectImages/website.png" alt="Project Image">
-                <div class="description">My personal website, you're on it right now!</div>
-                <div class="buttons">
-                    <a href="https://github.com/FDragon07/dylanhager.com" target="_blank">GitHub</a>
-                    <a href="https://dylanhager.com" target="_blank">Website</a>
-                    <p>Published: December 9th, 2024</p>
+        <div class="content">
+            <div id="navbar"></div>
+            <div class="projects-header">
+                <h1>My Projects</h1>
+            </div>
+            <div class="projects-container">
+                <div class="project-section">
+                    <img src="ProjectImages/FPGA4bitCounter.png" alt="Project Image">
+                    <div class="description">First time using a FPGA</div>
+                    <div class="buttons">
+                        <a href="https://github.com/FDragon07/FPGA-4bit-Counter" target="_blank">GitHub</a>
+                        <a href="videoPlayer.html">Video</a>
+                        <p>Published: December 9th, 2024</p>
+                    </div>
+                </div>
+                <div class="project-section">
+                    <img src="ProjectImages/website.png" alt="Project Image">
+                    <div class="description">My personal website, you're on it right now!</div>
+                    <div class="buttons">
+                        <a href="https://github.com/FDragon07/dylanhager.com" target="_blank">GitHub</a>
+                        <a href="https://dylanhager.com" target="_blank">Website</a>
+                        <p>Published: December 9th, 2024</p>
+                    </div>
+                </div>
+                <div class="project-section">
+                    <img src="ProjectImages/ConnectionsBot.png" alt="Project Image">
+                    <div class="description">A discord bot to track NYT connections stats</div>
+                    <div class="buttons">
+                        <a href="https://github.com/FDragon07/ConnectionsBot" target="_blank">GitHub</a>
+                        <p>Published: March 26th, 2024</p>
+                    </div>
+                </div>
+                <div class="project-section">
+                    <img src="ProjectImages/RainbowClock.png" alt="Project Image">
+                    <div class="description">A clock made only with AI</div>
+                    <div class="buttons">
+                        <a href="https://github.com/FDragon07/RainbowClock" target="_blank">GitHub</a>
+                        <a href="https://rainbowclock.dylanhager.com/" target="_blank">Website</a>
+                        <p>Published: December 9th, 2022</p>
+                    </div>
                 </div>
             </div>
-            <div class="project-section">
-                <img src="ProjectImages/ConnectionsBot.png" alt="Project Image">
-                <div class="description">A discord bot to track NYT connections stats</div>
-                <div class="buttons">
-                    <a href="https://github.com/FDragon07/ConnectionsBot" target="_blank">GitHub</a>
-                    <p>Published: March 26th, 2024</p>
-                </div>
-            </div>
-            <div class="project-section">
-                <img src="ProjectImages/RainbowClock.png" alt="Project Image">
-                <div class="description">A clock made only with AI</div>
-                <div class="buttons">
-                    <a href="https://github.com/FDragon07/RainbowClock" target="_blank">GitHub</a>
-                    <a href="https://rainbowclock.dylanhager.com/" target="_blank">Website</a>
-                    <p>Published: December 9th, 2022</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="projects-header">
-            <h1>The Making of This Website</h1>
+            <div class="projects-header">
+                <h1>The Making of This Website</h1>
+            </div>
+            <p style="text-align: center; padding-left: 10%; padding-right: 10%;">
+                This website was made using HTML, CSS, and JavaScript. 
+                The main creation of it started November 29th, 2024. 
+                I did use github copilot to help but over the past year 
+                I have found it to be more code review then coding so I have stopped relying on it. 
+                For the hosting of the website I used GitHub Pages 
+                and attached the custom domain I got from DreamHost.
+                Everything can be found on my GitHub page.
+            </p>
         </div>
-        <p style="text-align: center; padding-left: 10%; padding-right: 10%;">
-            This website was made using HTML, CSS, and JavaScript. 
-            The main creation of it started November 29th, 2024. 
-            I did use github copilot to help but over the past year 
-            I have found it to be more code review then coding so I have stopped relying on it. 
-            For the hosting of the website I used GitHub Pages 
-            and attached the custom domain I got from DreamHost.
-            Everything can be found on my GitHub page.
-        </p>
         <div class="footer">
             <hr class="navbar-line">
             <p style="font-weight: 300; margin: 0px; padding-left: 5px;">© 2024 Dylan Hager</p>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Dylan Hager | Video Player</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="black" />
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Source+Code+Pro:wght@500&display=swap');
+        </style>
+        <link rel="stylesheet" href="style.css">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                fetch('navbar.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar').innerHTML = data;
+                        // Load the sparkles script
+                        const script = document.createElement('script');
+                        script.src = 'sparkles.js';
+                        document.body.appendChild(script);
+        
+                        // Stops glitching when page is loading
+                        document.body.classList.remove("hidden");
+                    });
+            });
+        </script>
+    </head>
+    <body class="hidden">
+        <div id="navbar"></div>
+        <div class="video-player">
+            <video controls>
+                <source src="Videos\FPGA4bitCounter.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="footer">
+            <hr class="navbar-line">
+            <p style="font-weight: 300; margin: 0px; padding-left: 5px;">© 2024 Dylan Hager</p>
+            <a href="index.html" style="padding-left: 5px;">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </body>
+</html>

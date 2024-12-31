@@ -23,19 +23,6 @@
                         // Stops glitching when page is loading
                         document.body.classList.remove("hidden");
                     });
-        
-                // Function to check and adjust footer position
-                function checkFooterPosition() {
-                    if (document.body.scrollHeight > window.innerHeight) {
-                        document.querySelector('.footer').style.position = 'relative';
-                    } else {
-                        document.querySelector('.footer').style.position = 'fixed';
-                    }
-                }
-        
-                // Initial check
-                checkFooterPosition();
-                setInterval(checkFooterPosition, 1000);
             });
         </script>
     </head>
