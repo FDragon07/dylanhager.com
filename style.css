@@ -313,3 +313,20 @@ li a:hover {
 .filler {
     height: calc(100vh - 77px);
 }
+
+.video-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Set a fixed height for the container */
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+    background-color: var(--background-color);
+}
+
+.video-player video {
+    height: 100%; /* Ensure the video scales to the container height */
+    max-height: 100%; /* Ensure the video does not exceed the container height */
+    max-width: 100%;
+    object-fit: contain; /* Ensure the video scales correctly */
+}
