@@ -1,4 +1,5 @@
 // IF CHANGING ANIMATION TIME, ALSO CHANGE IN .SPARKLES IN STYLE.CSS
+// add viewport width into calculation for number of sparkles
 let animationTime = 5;
 
 // Function to create a sparkle
@@ -25,18 +26,18 @@ function createSparkle() {
     }
 
     const sparkle2 = document.createElement('div');
-    sparkle2.style.position = 'absolute';
     sparkle2.classList.add('sparkle');
     bar = document.querySelector('.footer');
     if (bar) {
         bar.appendChild(sparkle2);
+        bar.style.position = 'relative';
 
         // Set random position
-        let bottomNum = Math.random() * 47;
+        let bottomNum = Math.random() * 87;
         if (bottomNum < 2) {
             sparkle2.style.bottom = 2;
         }
-        sparkle2.style.bottom = bottomNum + 'px';
+        sparkle2.style.bottom = bottomNum + '%';
         sparkle2.style.left = Math.random() * 98 + '%';
 
         // Set random negative animation delay

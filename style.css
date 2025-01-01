@@ -308,3 +308,8 @@ li a:hover {
     font-size: 50px;
     margin: 0;
 }
+
+/* filler so full screen has a div 100vh - 57px */
+.filler {
+    height: calc(100vh - 77px);
+}
