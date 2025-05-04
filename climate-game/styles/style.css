@@ -105,25 +105,34 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 200px; /* Fixed width for the slider */
-    height: calc(100vh - 185px); /* Full height minus the header */
+    justify-content: flex-start; /* Align items to the top */
+    width: 400px; /* Fixed width for the tracker */
+    height: calc(100vh - 205px); /* Full height minus the header */
     position: absolute;
     right: 0;
     top: 155px; /* Start below the header */
     background-color: #3c5786; /* Light background for better visibility */
     border-left: 2px solid #004d40; /* Optional border for separation */
-    padding: 10px;
+    padding: 20px;
     border: black 5px solid; /* Optional border for styling */
+}
+
+/* Title of the temperature tracker */
+#temperature-tracker h3 {
+    font-size: 2em; /* Larger font size for the title */
+    margin-bottom: 20px; /* Add spacing below the title */
+    text-align: center;
 }
 
 /* Container for the thermometer scale and slider */
 #thermometer-container {
     position: relative;
-    height: 100%; /* Full height of the tracker */
+    height: 80%; /* Full height of the tracker */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: row; /* Place scale and slider side by side */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    gap: 20px; /* Add spacing between the scale and slider */
 }
 
 /* Add side numbers and tick marks to the thermometer */
@@ -132,26 +141,27 @@ button:hover {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    height: 100%;
-    font-size: 1.2em;
-    position: relative;
+    height: 80%; /* Match the height of the container */
+    font-size: 1.5em; /* Increase font size for scale numbers */
     padding-right: 15px; /* Add padding to the right for text alignment */
+    position: relative;
 }
 
-.tick {
+#thermometer-scale .tick {
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
+    justify-content: flex-end;
+    width: 100%;
 }
 
-.tick::before {
+#thermometer-scale .tick::before {
     content: '';
-    width: 10px;
-    height: 2px;
-    background-color: #ff5b5b;
-    margin-right: 5px;
-    position: absolute;
-    left: -15px;
+    display: block;
+    width: 10px; /* Length of the tick mark */
+    height: 2px; /* Thickness of the tick mark */
+    background-color: #ff5b5b; /* Color of the tick mark */
+    margin-right: 5px; /* Space between the tick and the number */
 }
 
 /* Style the temperature slider */
@@ -159,7 +169,7 @@ button:hover {
     writing-mode: vertical-lr; /* Vertical orientation */
     direction: rtl; /* Reverse direction for proper slider behavior */
     width: 12px; /* Thickness of the slider */
-    height: 100%; /* Full height of the container */
+    height: 80%; /* Full height of the container */
     background: transparent; /* Transparent to show the scale */
     outline: none;
     margin: 0;
@@ -211,6 +221,13 @@ button:hover {
 input[type="range"] {
     width: 80%; /* Make the slider shorter */
     margin: 10px 0; /* Add some spacing */
+}
+
+/* Style the temperature value */
+#temperature-value {
+    font-size: 1.5em; /* Match the size of the CO₂ conversion text */
+    margin-top: 10px;
+    text-align: center;
 }
 
 /* Make the money slider wider */
@@ -354,4 +371,109 @@ input[type="range"] {
 
 #warning-popup.fade-out {
     opacity: 0; /* Fully transparent */
+}
+
+/* Style for the CO₂ conversion text */
+#co2-conversion {
+    font-size: 1.5em; /* Match the size of the temperature value */
+    color: #ff5b5b;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* CO₂ Per Round Section */
+#co2-per-round {
+    position: absolute;
+    left: 20px; /* Align with the money slider */
+    top: 350px; /* Position below the money slider */
+    width: 50vw; /* Match the width of the money slider */
+    padding: 20px;
+    background-color: #3c5786; /* Match the tracker background */
+    border: black 5px solid;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for styling */
+}
+
+#co2-per-round h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+#co2-total {
+    font-size: 1.5em;
+    color: #ff5b5b;
+    margin-bottom: 20px;
+}
+
+.country-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.country-row span {
+    font-size: 1.2em;
+    color: white;
+    flex: 1;
+    text-align: center;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.button-row button {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.button-row button:hover {
+    background-color: #004d40;
+}
+
+#apply-co2 {
+    background-color: #ff5b5b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#apply-co2:hover {
+    background-color: #b71c1c;
+}
+
+/* Fire container */
+#fire-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place behind other elements */
+    overflow: hidden;
+}
+
+/* Fire images */
+.fire-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Start fully transparent */
+    transition: opacity 2s ease-in-out; /* Smooth fade effect */
 }

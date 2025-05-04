@@ -19,25 +19,62 @@
             </div>
 
             <div id="temperature-tracker">
-                <label for="temperature">Temperature:</label>
+                <h3>Global Temperature Tracker</h3>
                 <div id="thermometer-container">
                     <div id="thermometer-scale">
                         <div class="tick"><span>2.0°C</span></div>
                         <div class="tick"><span>1.5°C</span></div>
                         <div class="tick"><span>1.0°C</span></div>
                     </div>
-                    <input type="range" id="temperature" min="1" max="2.0" step="0.1" value="1.5">
-                    <span id="temperature-value" class="editable" style="padding-left: 30px;">1.5°C</span>
-                    <input type="number" id="temperature-input" min="1" max="2.0" step="0.1" value="1.5" class="hidden">
+                    <input type="range" id="temperature" min="1" max="2.0" step="0.00001" value="1.50">
+                    <span id="temperature-value" class="editable" style="margin-left: 50px;">1.50°C</span>
+                    <input type="number" id="temperature-input" min="1" max="2.0" step="0.00001" value="1.50" class="hidden" style="margin-left: 27px;">
                 </div>
+                <p id="co2-conversion" style="margin-top: 10px; text-align: center;">Equivalent CO₂ (since 1.5°C):<br>0 billion tons</p>
             </div>
         </div>
         
         <div id="money-slider">
-            <label for="money">Money:</label>
+            <h1 style="font-size: 2em;">Global Climate Money Fund</h1>
             <input type="range" id="money" min="0" max="65" step="0.01" value="0">
-            <span id="money-value" class="editable">$0 million</span>
+            <span id="money-value" class="editable" style="font-size: 1.5em;">$0 million</span>
             <input type="number" id="money-input" min="0" max="65" step="0.01" value="0" class="hidden">
+        </div>
+        
+        <div id="co2-per-round">
+            <h3>CO₂ Emissions Per Round</h3>
+            <p id="co2-total">Total CO₂: 46.00 billion tons</p>
+            <div class="country-row">
+                <span>USA</span>
+                <span>China</span>
+                <span>UK</span>
+                <span>Nigeria</span>
+                <span>India</span>
+                <span>Brazil</span>
+                <span>Australia</span>
+                <span>Russia</span>
+            </div>
+            <div class="button-row">
+                <button class="decrease-co2" data-value="-0.23">-230M</button>
+                <button class="decrease-co2" data-value="-0.72">-720M</button>
+                <button class="decrease-co2" data-value="-0.02">-20M</button>
+                <button class="decrease-co2" data-value="-0.07">-70M</button>
+                <button class="decrease-co2" data-value="-0.15">-150M</button>
+                <button class="decrease-co2" data-value="-0.007">-7M</button>
+                <button class="decrease-co2" data-value="-0.12">-120M</button>
+                <button class="decrease-co2" data-value="-1.5">-1.5B</button>
+            </div>
+            <div class="button-row">
+                <button class="increase-co2" data-value="0.23">+230M</button>
+                <button class="increase-co2" data-value="0.72">+720M</button>
+                <button class="increase-co2" data-value="0.02">+20M</button>
+                <button class="increase-co2" data-value="0.07">+70M</button>
+                <button class="increase-co2" data-value="0.15">+150M</button>
+                <button class="increase-co2" data-value="0.007">+7M</button>
+                <button class="increase-co2" data-value="0.12">+120M</button>
+                <button class="increase-co2" data-value="1.5">+1.5B</button>
+            </div>
+            <button id="apply-co2" style="margin-top: 20px;">Apply CO₂ For This Round</button>
         </div>
         
         <div id="print-out-button-container">

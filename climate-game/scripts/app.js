@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const temperatureSlider = document.getElementById('temperature');
     const temperatureInput = document.getElementById('temperature-input');
     const temperatureValue = document.getElementById('temperature-value');
+    const co2Conversion = document.getElementById('co2-conversion');
     const moneySlider = document.getElementById('money');
     const moneyInput = document.getElementById('money-input');
     const moneyValue = document.getElementById('money-value');
@@ -14,20 +15,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeSidebarButton = document.getElementById('close-sidebar-button');
     const downloadPdfButton = document.getElementById('download-pdf-button');
     const titleContainer = document.getElementById('title-container');
+    const co2TotalElement = document.getElementById('co2-total');
+    let co2Total = 46.0; // Base CO₂ value in billion tons
 
     // Sync temperature slider and input
-    function updateTemperature(value) {
-        temperatureValue.textContent = `${value}°C`;
-        temperatureSlider.value = value;
-        temperatureInput.value = value;
-    }
-
     temperatureSlider.addEventListener('input', () => {
-        const temp = parseFloat(temperatureSlider.value);
-        updateTemperature(temp.toFixed(1));
+        const temp = parseFloat(temperatureSlider.value).toFixed(5); // Slider precision
 
+        // Update the displayed temperature value
+        temperatureValue.textContent = `${parseFloat(temp).toFixed(2)}°C`; // Display up to 0.01°C
+        temperatureInput.value = temp; // Update the input field
+
+        // Update the CO₂ conversion text
+        const co2 = ((temp - 1.5) / 0.1 * 77).toFixed(2); // Calculate CO₂ in billion tons with 0.01 precision
+        co2Conversion.innerHTML = `Equivalent CO₂ (since 1.5°C):<br>${co2} billion tons`;
+
+        // Update the fire overlay visibility
         if (temp >= 1.5 && temp < 2.0) {
-            const fireOpacity = (temp - 1.5) / 0.4; // Scale opacity from 1.6°C to 2.0°C
+            const fireOpacity = (temp - 1.5) / 0.4; // Scale opacity from 1.5°C to 2.0°C
             titleContainer.classList.remove('blackened');
             titleContainer.style.setProperty('--fire-opacity', Math.min(fireOpacity, 1));
         } else if (temp >= 2.0) {
@@ -41,8 +46,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     temperatureInput.addEventListener('input', () => {
         let value = parseFloat(temperatureInput.value);
-        if (value >= 0 && value <= 2.5) {
-            updateTemperature(value.toFixed(1));
+        if (value >= 1 && value <= 2.0) { // Ensure the value is within the valid range
+            temperatureSlider.value = value.toFixed(5); // Update the slider
+            const co2 = ((value - 1.5) / 0.1 * 77).toFixed(2); // Calculate CO₂ equivalent with 0.01 precision
+            temperatureValue.textContent = `${value.toFixed(2)}°C`; // Update the displayed value
+            co2Conversion.innerHTML = `Equivalent CO₂ (since 1.5°C):<br>${co2} billion tons`;
+        } else {
+            temperatureInput.value = parseFloat(temperatureSlider.value).toFixed(5); // Reset input if out of range
+        }
+
+        if (temp >= 1.5 && temp < 2.0) {
+            const fireOpacity = (temp - 1.5) / 0.4; // Scale opacity from 1.6°C to 2.0°C
+            titleContainer.classList.remove('blackened');
+            titleContainer.style.setProperty('--fire-opacity', Math.min(fireOpacity, 1));
+        } else if (temp >= 2.0) {
+            titleContainer.classList.add('blackened');
+            titleContainer.style.setProperty('--fire-opacity', 0);
+        } else {
+            titleContainer.classList.remove('blackened');
+            titleContainer.style.setProperty('--fire-opacity', 0);
         }
     });
 
@@ -137,5 +159,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    updateTemperature(1.5); // Set the default temperature to 1.5°C
+    // Update CO₂ total when buttons are clicked
+    document.querySelectorAll('.increase-co2, .decrease-co2').forEach(button => {
+        button.addEventListener('click', () => {
+            const value = parseFloat(button.dataset.value);
+            co2Total += value;
+            co2TotalElement.textContent = `Total CO₂: ${co2Total.toFixed(2)} billion tons`;
+        });
+    });
+
+    // Add functionality to the "Apply CO₂ For This Round" button
+    const applyCo2Button = document.getElementById('apply-co2');
+    applyCo2Button.addEventListener('click', () => {
+        // Calculate the new temperature based on the updated CO₂ total
+        const additionalTemperature = co2Total / 77 * 0.1; // Incremental temperature increase
+        const currentTemperature = parseFloat(temperatureSlider.value);
+        const newTemperature = currentTemperature + additionalTemperature;
+
+        // Update the temperature slider, input, and displayed value
+        temperatureSlider.value = newTemperature.toFixed(5);
+        temperatureInput.value = newTemperature.toFixed(5);
+        temperatureValue.textContent = `${newTemperature.toFixed(2)}°C`;
+
+        // Update the CO₂ conversion text
+        const co2Equivalent = ((newTemperature - 1.5) / 0.1 * 77).toFixed(2);
+        co2Conversion.innerHTML = `Equivalent CO₂ (since 1.5°C):<br>${co2Equivalent} billion tons`;
+
+        // Update the fire overlay visibility
+        if (newTemperature >= 1.5 && newTemperature < 2.0) {
+            const fireOpacity = (newTemperature - 1.5) / 0.4; // Scale opacity from 1.5°C to 2.0°C
+            titleContainer.classList.remove('blackened');
+            titleContainer.style.setProperty('--fire-opacity', Math.min(fireOpacity, 1));
+        } else if (newTemperature >= 2.0) {
+            titleContainer.classList.add('blackened');
+            titleContainer.style.setProperty('--fire-opacity', 0);
+        } else {
+            titleContainer.classList.remove('blackened');
+            titleContainer.style.setProperty('--fire-opacity', 0);
+        }
+    });
 });
