@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Adapt or Vanish | Gameboard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap');
+    </style>
+    <body>
+        <div id="main-container">
+            <div id="title-container">
+                <div class="title-border">
+                    <h1 style="font-family: 'Climate Crisis', sans-serif; font-weight: normal;">Adapt or Vanish</h1>
+                </div>
+                <h2>Get the nations in valence</h2>
+            </div>
+
+            <div id="temperature-tracker">
+                <label for="temperature">Temperature:</label>
+                <div id="thermometer-container">
+                    <div id="thermometer-scale">
+                        <div class="tick"><span>2.0°C</span></div>
+                        <div class="tick"><span>1.5°C</span></div>
+                        <div class="tick"><span>1.0°C</span></div>
+                    </div>
+                    <input type="range" id="temperature" min="1" max="2.0" step="0.1" value="1.5">
+                    <span id="temperature-value" class="editable" style="padding-left: 30px;">1.5°C</span>
+                    <input type="number" id="temperature-input" min="1" max="2.0" step="0.1" value="1.5" class="hidden">
+                </div>
+            </div>
+        </div>
+        
+        <div id="money-slider">
+            <label for="money">Money:</label>
+            <input type="range" id="money" min="0" max="65" step="0.01" value="0">
+            <span id="money-value" class="editable">$0 million</span>
+            <input type="number" id="money-input" min="0" max="65" step="0.01" value="0" class="hidden">
+        </div>
+        
+        <div id="print-out-button-container">
+            <button id="print-out-button">Print Outs & Rules</button>
+        </div>
+
+        <div id="sidebar" class="hidden">
+            <div id="sidebar-content">
+                <h2>Rules</h2>
+                <p><strong>Players:</strong> 6-8<br>
+                <strong>Time:</strong> 60-120 minutes</p>
+
+                <h3>How to Win</h3>
+                <ul>
+                    <li>If the global temperature is less than 1.5°C by 2050, everyone wins.</li>
+                    <li>If the global temperature is between 1.5°C and 2°C, only countries that have completed their secondary objectives win.</li>
+                    <li>If the global temperature rises above 2°C, the game ends, and everyone loses.</li>
+                </ul>
+
+                <h3>Goals</h3>
+                <ul>
+                    <li>Reduce your carbon emissions by investing in renewable energy.</li>
+                    <li>Reduce fossil fuel production to lower global CO₂ emissions.</li>
+                    <li>Invest in education to make it easier to fund renewable energy initiatives.</li>
+                    <li>Set aside money in an emergency climate fund to respond to disasters.</li>
+                    <li>Contribute to the global renewable energy fund to support underdeveloped countries.</li>
+                </ul>
+
+                <h3>Setup</h3>
+                <p>Assign each player a country, money per round indicator, fossil fuel production indicators, and a secondary mission. Each player should also receive a D-100 (two D-10 dice).</p>
+
+                <h3>Gameplay</h3>
+                <p>The game starts in 2020 and ends in 2050. Each round represents 2 years. Players receive money at the start of each round, which they can allocate to various actions.</p>
+
+                <h3>Actions Per Turn</h3>
+                <ul>
+                    <li>Invest in renewable energy to reduce emissions.</li>
+                    <li>Reduce or increase fossil fuel production, affecting emissions and income.</li>
+                    <li>Invest in or defund education, impacting policy success rates.</li>
+                    <li>Set aside money in an emergency fund for disasters.</li>
+                    <li>Contribute to the global renewable energy fund.</li>
+                </ul>
+
+                <h3>Disasters</h3>
+                <p>At the end of each round, draw disaster cards. Countries must use their emergency funds to mitigate disasters. If insufficient funds are available, the cost is doubled and deducted from future income.</p>
+
+                <h3>How to Vote on Policies</h3>
+                <p>To pass a policy, roll a D-100. A roll of 51 or higher is required. For every 5% increase in funding, roll an additional time and take the lowest result.</p>
+
+                <h3>Education's Role</h3>
+                <p>Investing in education reduces the number of rolls required to pass policies. Defunding education increases the number of rolls required.</p>
+            </div>
+            <div id="sidebar-buttons">
+                <button id="close-sidebar-button">Close</button>
+                <button id="download-pdf-button">Download PDF (Includes Print Outs)</button>
+            </div>
+        </div>
+        
+        <script src="scripts/app.js"></script>
+        <script src="scripts/warning.js" defer></script>
+    </body>
+</html>

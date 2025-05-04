@@ -1,0 +1,357 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #6c6c6c; /* Fallback color */
+    background-image: url('images/background.jpg'); /* Path to your background image */
+    background-size: cover; /* Make the image cover the entire screen */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    color: #ff5b5b;
+    margin: 0;
+    size: 30px;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p, span, li {
+    font-size: 1.2em; /* Increase font size for paragraphs, spans, and list items */
+}
+
+.slider-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+slider {
+    width: 80%;
+}
+
+button {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+/* Main container for layout */
+#main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Title container (header) */
+#title-container {
+    position: relative;
+    height: 150px;
+    background: url('images/forest-trees.jpg') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+    border-bottom: black 10px solid;
+    background-color: darkgreen;
+    width: 100%; /* Full width of the screen */
+}
+
+#title-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/fire-overlay.png') no-repeat center center;
+    background-size: cover;
+    opacity: var(--fire-opacity, 0); /* Use the fire-opacity variable */
+    transition: opacity 0.5s ease;
+}
+
+#title-container.blackened {
+    background: url('images/forest-blackened.jpg') no-repeat center center;
+    background-color: gray;
+    background-size: cover;
+}
+
+/* Add a border effect to the title text */
+#title-container h1 {
+    font-size: 4em;
+    text-align: top center;
+    margin: 10px;
+    color: rgb(255, 87, 87); /* Text color */
+    text-shadow: 
+        -3px -3px 0 #004d40, /* Top-left shadow */
+        3px -3px 0 #004d40,  /* Top-right shadow */
+        -3px 3px 0 #004d40,  /* Bottom-left shadow */
+        3px 3px 0 #004d40;   /* Bottom-right shadow */
+}
+
+/* Temperature tracker on the right */
+#temperature-tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px; /* Fixed width for the slider */
+    height: calc(100vh - 185px); /* Full height minus the header */
+    position: absolute;
+    right: 0;
+    top: 155px; /* Start below the header */
+    background-color: #3c5786; /* Light background for better visibility */
+    border-left: 2px solid #004d40; /* Optional border for separation */
+    padding: 10px;
+    border: black 5px solid; /* Optional border for styling */
+}
+
+/* Container for the thermometer scale and slider */
+#thermometer-container {
+    position: relative;
+    height: 100%; /* Full height of the tracker */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Add side numbers and tick marks to the thermometer */
+#thermometer-scale {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+    font-size: 1.2em;
+    position: relative;
+    padding-right: 15px; /* Add padding to the right for text alignment */
+}
+
+.tick {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.tick::before {
+    content: '';
+    width: 10px;
+    height: 2px;
+    background-color: #ff5b5b;
+    margin-right: 5px;
+    position: absolute;
+    left: -15px;
+}
+
+/* Style the temperature slider */
+#temperature {
+    writing-mode: vertical-lr; /* Vertical orientation */
+    direction: rtl; /* Reverse direction for proper slider behavior */
+    width: 12px; /* Thickness of the slider */
+    height: 100%; /* Full height of the container */
+    background: transparent; /* Transparent to show the scale */
+    outline: none;
+    margin: 0;
+}
+
+#temperature::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: red; /* Red slider thumb */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#temperature::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: red; /* Red slider thumb */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#temperature::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: red; /* Red slider thumb */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#temperature::-webkit-slider-runnable-track {
+    background: red; /* Red slider track */
+    border-radius: 4px;
+}
+
+#temperature::-moz-range-track {
+    background: red; /* Red slider track */
+    border-radius: 4px;
+}
+
+#temperature::-ms-track {
+    background: red; /* Red slider track */
+    border-radius: 4px;
+    border: none;
+    color: transparent;
+}
+
+input[type="range"] {
+    width: 80%; /* Make the slider shorter */
+    margin: 10px 0; /* Add some spacing */
+}
+
+/* Make the money slider wider */
+#money-slider {
+    position: absolute;
+    left: 20px; /* Distance from the left edge */
+    top: 250px; /* Start at the middle of the screen */
+    transform: translateY(-50%); /* Center vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3c5786; /* Optional background for better visibility */
+    padding: 10px;
+    border: 5px solid black; /* Optional border for styling */
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for styling */
+}
+
+#money {
+    width: 50vw; /* Adjust the width of the slider */
+}
+
+/* Hide the number inputs by default */
+.hidden {
+    display: none;
+}
+
+/* Add a cursor pointer to editable spans */
+.editable {
+    cursor: pointer;
+}
+
+/* Print Out button on the bottom left */
+#print-out-button-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+#print-out-button {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#print-out-button:hover {
+    background-color: #004d40;
+}
+
+/* Sidebar styling */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0; /* Sidebar opens on the left */
+    width: 50%;
+    height: 100%;
+    background-color: #cfcfcf;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    color: black;
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#sidebar.hidden {
+    display: none;
+}
+
+#sidebar-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#sidebar-content p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+/* Container for buttons at the bottom of the sidebar */
+#sidebar-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Add spacing above the buttons */
+    margin-bottom: 30px; /* Add spacing below the buttons */
+    padding: 10px 0;
+}
+
+/* Style for the buttons */
+#download-pdf-button,
+#close-sidebar-button {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#download-pdf-button:hover,
+#close-sidebar-button:hover {
+    background-color: #004d40;
+}
+
+/* Fonts */
+
+.climate-crisis-font {
+  font-family: "Climate Crisis", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "YEAR" 1979;
+}
+
+#warning-popup {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffcc00;
+    color: black;
+    padding: 10px 20px;
+    border: 2px solid #ff9900;
+    border-radius: 5px;
+    font-size: 1em;
+    z-index: 10000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 1; /* Fully visible by default */
+    transition: opacity 0.5s ease; /* Smooth fade-out effect */
+}
+
+#warning-popup.fade-out {
+    opacity: 0; /* Fully transparent */
+}
