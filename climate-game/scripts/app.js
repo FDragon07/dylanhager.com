@@ -18,53 +18,55 @@ document.addEventListener('DOMContentLoaded', function() {
     const co2TotalElement = document.getElementById('co2-total');
     let co2Total = 46.0; // Base CO₂ value in billion tons
 
-    // Sync temperature slider and input
-    temperatureSlider.addEventListener('input', () => {
-        const temp = parseFloat(temperatureSlider.value).toFixed(5); // Slider precision
+    // Function to update temperature UI elements
+    function updateTemperatureUI(temp) {
+        const temperature = parseFloat(temp);
+        if (isNaN(temperature)) return; // Exit if temp is not a valid number
 
-        // Update the displayed temperature value
-        temperatureValue.textContent = `${parseFloat(temp).toFixed(2)}°C`; // Display up to 0.01°C
-        temperatureInput.value = temp; // Update the input field
+        // Clamp temperature between min and max
+        const minTemp = parseFloat(temperatureSlider.min);
+        const maxTemp = parseFloat(temperatureSlider.max);
+        const clampedTemp = Math.max(minTemp, Math.min(temperature, maxTemp));
 
-        // Update the CO₂ conversion text
-        const co2 = ((temp - 1.5) / 0.1 * 77).toFixed(2); // Calculate CO₂ in billion tons with 0.01 precision
-        co2Conversion.innerHTML = `Equivalent CO₂ (since 1.5°C):<br>${co2} billion tons`;
+        const displayTemp = clampedTemp.toFixed(2);
+        const sliderTemp = clampedTemp.toFixed(5);
 
-        // Update the fire overlay visibility
-        if (temp >= 1.5 && temp < 2.0) {
-            const fireOpacity = (temp - 1.5) / 0.4; // Scale opacity from 1.5°C to 2.0°C
+        // Update slider, input, and display value
+        temperatureSlider.value = sliderTemp;
+        temperatureInput.value = sliderTemp;
+        temperatureValue.textContent = `${displayTemp}°C`;
+
+        // Update CO₂ conversion text
+        const co2Equivalent = ((clampedTemp - 1.5) / 0.1 * 77).toFixed(2);
+        co2Conversion.innerHTML = `Equivalent CO₂ (since 1.5°C):<br>${co2Equivalent} billion tons`;
+
+        // Update fire overlay visibility
+        if (clampedTemp >= 1.5 && clampedTemp < 2.0) {
+            const fireOpacity = (clampedTemp - 1.5) / 0.5; // Adjusted range for smoother transition
             titleContainer.classList.remove('blackened');
             titleContainer.style.setProperty('--fire-opacity', Math.min(fireOpacity, 1));
-        } else if (temp >= 2.0) {
+        } else if (clampedTemp >= 2.0) {
             titleContainer.classList.add('blackened');
-            titleContainer.style.setProperty('--fire-opacity', 0);
+            titleContainer.style.setProperty('--fire-opacity', 0); // Ensure fire is off when blackened
         } else {
             titleContainer.classList.remove('blackened');
             titleContainer.style.setProperty('--fire-opacity', 0);
         }
+    }
+
+    // Sync temperature slider and input
+    temperatureSlider.addEventListener('input', () => {
+        updateTemperatureUI(temperatureSlider.value);
     });
 
     temperatureInput.addEventListener('input', () => {
         let value = parseFloat(temperatureInput.value);
-        if (value >= 1 && value <= 2.0) { // Ensure the value is within the valid range
-            temperatureSlider.value = value.toFixed(5); // Update the slider
-            const co2 = ((value - 1.5) / 0.1 * 77).toFixed(2); // Calculate CO₂ equivalent with 0.01 precision
-            temperatureValue.textContent = `${value.toFixed(2)}°C`; // Update the displayed value
-            co2Conversion.innerHTML = `Equivalent CO₂ (since 1.5°C):<br>${co2} billion tons`;
+        // Ensure the value is within the valid range before updating UI
+        if (!isNaN(value) && value >= parseFloat(temperatureSlider.min) && value <= parseFloat(temperatureSlider.max)) {
+            updateTemperatureUI(value);
         } else {
-            temperatureInput.value = parseFloat(temperatureSlider.value).toFixed(5); // Reset input if out of range
-        }
-
-        if (temp >= 1.5 && temp < 2.0) {
-            const fireOpacity = (temp - 1.5) / 0.4; // Scale opacity from 1.6°C to 2.0°C
-            titleContainer.classList.remove('blackened');
-            titleContainer.style.setProperty('--fire-opacity', Math.min(fireOpacity, 1));
-        } else if (temp >= 2.0) {
-            titleContainer.classList.add('blackened');
-            titleContainer.style.setProperty('--fire-opacity', 0);
-        } else {
-            titleContainer.classList.remove('blackened');
-            titleContainer.style.setProperty('--fire-opacity', 0);
+            // Optionally reset or provide feedback if input is invalid/out of range
+            temperatureInput.value = parseFloat(temperatureSlider.value).toFixed(5); // Reset to current slider value
         }
     });
 
@@ -171,31 +173,69 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add functionality to the "Apply CO₂ For This Round" button
     const applyCo2Button = document.getElementById('apply-co2');
     applyCo2Button.addEventListener('click', () => {
-        // Calculate the new temperature based on the updated CO₂ total
-        const additionalTemperature = co2Total / 77 * 0.1; // Incremental temperature increase
+        // Calculate the temperature increase based on the *total* CO₂ accumulated this round
+        const additionalTemperature = co2Total / 77 * 0.1; // Temp increase from this round's CO₂
         const currentTemperature = parseFloat(temperatureSlider.value);
         const newTemperature = currentTemperature + additionalTemperature;
 
-        // Update the temperature slider, input, and displayed value
-        temperatureSlider.value = newTemperature.toFixed(5);
-        temperatureInput.value = newTemperature.toFixed(5);
-        temperatureValue.textContent = `${newTemperature.toFixed(2)}°C`;
+        updateTemperatureUI(newTemperature); // Update UI with the new total temperature
 
-        // Update the CO₂ conversion text
-        const co2Equivalent = ((newTemperature - 1.5) / 0.1 * 77).toFixed(2);
-        co2Conversion.innerHTML = `Equivalent CO₂ (since 1.5°C):<br>${co2Equivalent} billion tons`;
-
-        // Update the fire overlay visibility
-        if (newTemperature >= 1.5 && newTemperature < 2.0) {
-            const fireOpacity = (newTemperature - 1.5) / 0.4; // Scale opacity from 1.5°C to 2.0°C
-            titleContainer.classList.remove('blackened');
-            titleContainer.style.setProperty('--fire-opacity', Math.min(fireOpacity, 1));
-        } else if (newTemperature >= 2.0) {
-            titleContainer.classList.add('blackened');
-            titleContainer.style.setProperty('--fire-opacity', 0);
-        } else {
-            titleContainer.classList.remove('blackened');
-            titleContainer.style.setProperty('--fire-opacity', 0);
-        }
+        // Keep co2Total as is, don't reset for the next round
+        // co2Total = 0; // Removed this line
+        // co2TotalElement.textContent = `Total CO₂: ${co2Total.toFixed(2)} billion tons`; // Removed this line
     });
-});
+
+    // Add functionality for the new Quick Add CO₂ buttons
+    document.querySelectorAll('.quick-add-co2').forEach(button => {
+        button.addEventListener('click', () => {
+            const co2ToAdd = parseFloat(button.dataset.value); // CO₂ to add in billion tons
+
+            // Extract current equivalent CO₂ value
+            const co2Text = co2Conversion.innerHTML;
+            // Use regex to find the number before " billion tons"
+            const match = co2Text.match(/<br>([\d.-]+) billion tons/);
+            let currentEquivalentCO2 = 0;
+            if (match && match[1]) {
+                currentEquivalentCO2 = parseFloat(match[1]);
+            }
+
+            const newEquivalentCO2 = currentEquivalentCO2 + co2ToAdd;
+
+            // Calculate the new temperature based on the updated *equivalent* CO₂
+            // Formula rearranged: temp = (equivalentCO2 / 77 * 0.1) + 1.5
+            const newTemperature = (newEquivalentCO2 / 77 * 0.1) + 1.5;
+
+            updateTemperatureUI(newTemperature); // Update UI based on the new temperature
+        });
+    });
+
+    // --- Add functionality for the new Quick Subtract CO₂ buttons ---
+    document.querySelectorAll('.quick-subtract-co2').forEach(button => {
+        button.addEventListener('click', () => {
+            const co2ToSubtract = parseFloat(button.dataset.value); // CO₂ to subtract (already negative)
+
+            // Extract current equivalent CO₂ value
+            const co2Text = co2Conversion.innerHTML;
+            // Use regex to find the number before " billion tons"
+            const match = co2Text.match(/<br>([\d.-]+) billion tons/);
+            let currentEquivalentCO2 = 0;
+            if (match && match[1]) {
+                currentEquivalentCO2 = parseFloat(match[1]);
+            }
+
+            // Add the negative value to subtract
+            const newEquivalentCO2 = currentEquivalentCO2 + co2ToSubtract;
+
+            // Calculate the new temperature based on the updated *equivalent* CO₂
+            // Formula rearranged: temp = (equivalentCO2 / 77 * 0.1) + 1.5
+            const newTemperature = (newEquivalentCO2 / 77 * 0.1) + 1.5;
+
+            updateTemperatureUI(newTemperature); // Update UI based on the new temperature
+        });
+    });
+
+    // Initial UI setup on load
+    updateTemperatureUI(temperatureSlider.value);
+    updateMoney(moneySlider.value); // Assuming updateMoney exists and works correctly
+
+}); // End of DOMContentLoaded
