@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
 
-    if (screenWidth < 800 || screenHeight < 400) {
+    if (screenWidth < 1400 || screenHeight < 1000) {
         warningPopup.style.display = "block";
         setTimeout(() => {
             warningPopup.classList.add("fade-out");
