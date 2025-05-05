@@ -155,9 +155,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (downloadPdfButton) {
         downloadPdfButton.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.href = 'path/to/printouts.pdf'; // Replace with the actual path to your PDF
+            link.href = 'assets/printouts.pdf'; // Replace with the actual path to your PDF
             link.download = 'printouts.pdf';
             link.click();
+
+            // Dowload rules PDF
+            const rulesLink = document.createElement('a');
+            rulesLink.href = 'assets/rules.pdf'; // Replace with the actual path to your PDF
+            rulesLink.download = 'rules.pdf';
+            rulesLink.click();
         });
     }
 
